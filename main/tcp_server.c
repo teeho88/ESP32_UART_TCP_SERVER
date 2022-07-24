@@ -175,14 +175,14 @@ static void uart_event_task(void *pvParam)
 
 static void uart_send_cmd_task(void *pvParam)
 {
-    // while(1) {
-    //     float pitch;
-    //     float roll;
-    //     float yaw;
-    //     bw_imu_get_ang(&pitch, &roll, &yaw);
-    //     sprintf((char*)data_to_trans, "b%.2f!%.2f!%.2fe", pitch, roll, yaw);
-    //     xQueueSend(queue_data, (void*)data_to_trans , (TickType_t)0);
-    // }
+    while(1) {
+        float pitch;
+        float roll;
+        float yaw;
+        bw_imu_get_ang(&pitch, &roll, &yaw);
+        sprintf((char*)data_to_trans, "b%.2f!%.2f!%.2fe", pitch, roll, yaw);
+        xQueueSend(queue_data, (void*)data_to_trans , (TickType_t)0);
+    }
 }
 
 void app_main()
@@ -225,11 +225,11 @@ void app_main()
     bw_imu_init(EX_UART_NUM);
     initialise_wifi();
 
-    xTaskCreate(&printWiFiIP, "printWiFiIP", 2048, NULL, 5, NULL);
-    xTaskCreate(&tcp_server, "tcp_server", 4096, NULL, 5, NULL);
+    xTaskCreate(printWiFiIP, "printWiFiIP", 2048, NULL, 5, NULL);
+    xTaskCreate(tcp_server, "tcp_server", 4096, NULL, 5, NULL);
     //Create a task to handler UART event from ISR
-    xTaskCreate(uart_event_task, "uart_event_task", 4096, NULL, 12, NULL);
-    // xTaskCreate(uart_send_cmd_task, "uart_send_cmd_task", 4096, NULL, 10, NULL);
+    // xTaskCreate(uart_event_task, "uart_event_task", 4096, NULL, 12, NULL); // Uncomment dòng này nếu giao tiếp với IMU theo chế độ output tự động
+    xTaskCreate(uart_send_cmd_task, "uart_send_cmd_task", 4096, NULL, 10, NULL); // Uncomment dòng này nếu giao tiếp với IMU theo chế độ ANSWER
 }
 
 
