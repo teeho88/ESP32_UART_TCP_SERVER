@@ -1,0 +1,16 @@
+C:\Users\Teeho\Desktop\testWPF\ClientTest\ClientTest\bin\Debug\ClientTest.exe.config
+C:\Users\Teeho\Desktop\testWPF\ClientTest\ClientTest\bin\Debug\ClientTest.exe
+C:\Users\Teeho\Desktop\testWPF\ClientTest\ClientTest\bin\Debug\ClientTest.pdb
+C:\Users\Teeho\Desktop\testWPF\ClientTest\ClientTest\obj\Debug\ClientTest.csproj.AssemblyReference.cache
+C:\Users\Teeho\Desktop\testWPF\ClientTest\ClientTest\obj\Debug\MainWindow.g.cs
+C:\Users\Teeho\Desktop\testWPF\ClientTest\ClientTest\obj\Debug\App.g.cs
+C:\Users\Teeho\Desktop\testWPF\ClientTest\ClientTest\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Teeho\Desktop\testWPF\ClientTest\ClientTest\obj\Debug\ClientTest_MarkupCompile.cache
+C:\Users\Teeho\Desktop\testWPF\ClientTest\ClientTest\obj\Debug\ClientTest_MarkupCompile.lref
+C:\Users\Teeho\Desktop\testWPF\ClientTest\ClientTest\obj\Debug\MainWindow.baml
+C:\Users\Teeho\Desktop\testWPF\ClientTest\ClientTest\obj\Debug\ClientTest.g.resources
+C:\Users\Teeho\Desktop\testWPF\ClientTest\ClientTest\obj\Debug\ClientTest.Properties.Resources.resources
+C:\Users\Teeho\Desktop\testWPF\ClientTest\ClientTest\obj\Debug\ClientTest.csproj.GenerateResource.cache
+C:\Users\Teeho\Desktop\testWPF\ClientTest\ClientTest\obj\Debug\ClientTest.csproj.CoreCompileInputs.cache
+C:\Users\Teeho\Desktop\testWPF\ClientTest\ClientTest\obj\Debug\ClientTest.exe
+C:\Users\Teeho\Desktop\testWPF\ClientTest\ClientTest\obj\Debug\ClientTest.pdb

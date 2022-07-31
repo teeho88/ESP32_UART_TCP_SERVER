@@ -144,24 +144,24 @@ static void uart_event_task(void *pvParam)
                     uart_read_bytes(EX_UART_NUM, data_to_trans, event.size, portMAX_DELAY);
                     xQueueSend(queue_data, (void*)data_to_trans , (TickType_t)0);
                     break;
-                // Event of HW FIFO overflow detected
+                //Event of HW FIFO overflow detected
                 case UART_FIFO_OVF:
                     ESP_LOGI(TAG, "hw fifo overflow");
-                    // If fifo overflow happened, you should consider adding flow control for your application.
-                    // The ISR has already reset the rx FIFO,
-                    // As an example, we directly flush the rx buffer here in order to read more data.
+                    /*  If fifo overflow happened, you should consider adding flow control for your application.
+                        The ISR has already reset the rx FIFO,
+                        As an example, we directly flush the rx buffer here in order to read more data. */
                     uart_flush_input(EX_UART_NUM);
                     xQueueReset(uart0_queue);
                     break;
-                // Event of UART ring buffer full
+                //Event of UART ring buffer full
                 case UART_BUFFER_FULL:
                     ESP_LOGI(TAG, "ring buffer full");
-                    // If buffer full happened, you should consider encreasing your buffer size
-                    // As an example, we directly flush the rx buffer here in order to read more data.
+                    /*  If buffer full happened, you should consider encreasing your buffer size
+                        As an example, we directly flush the rx buffer here in order to read more data. */
                     uart_flush_input(EX_UART_NUM);
                     xQueueReset(uart0_queue);
                     break;
-                // Others
+                //Others
                 default:
                     ESP_LOGI(TAG, "uart event type: %d", event.type);
                     break;
@@ -187,7 +187,7 @@ static void uart_send_cmd_task(void *pvParam)
 
 void app_main()
 {	
-    // Initialize NVS
+    //Initialize NVS
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
       ESP_ERROR_CHECK(nvs_flash_erase());
@@ -209,8 +209,8 @@ void app_main()
     uart_param_config(EX_UART_NUM, &uart_config);
     uart_driver_install(EX_UART_NUM, BUF_SIZE * 2, BUF_SIZE * 2, 20, &uart0_queue, 0);
 
+    //Create WIFI event loop
     wifi_event_group = xEventGroupCreate();
-    // Create WIFI event loop
     ESP_ERROR_CHECK(esp_event_loop_create_default());
     ESP_ERROR_CHECK(esp_event_handler_instance_register(ESP_EVENT_ANY_BASE, ESP_EVENT_ANY_ID, event_handler, NULL, NULL));
 
@@ -218,8 +218,11 @@ void app_main()
     esp_log_level_set(TAG, ESP_LOG_INFO);
     //Set UART pins (using UART0 default pins ie no changes.)
     uart_set_pin(EX_UART_NUM, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+
+    //Create buffer to receive data from UART
     data_to_trans = (uint8_t*)malloc(RD_BUF_SIZE);
 
+    //Create queue for data exchanging between UART task and server task
     queue_data = xQueueCreate(10, 128);
 
     bw_imu_init(EX_UART_NUM);

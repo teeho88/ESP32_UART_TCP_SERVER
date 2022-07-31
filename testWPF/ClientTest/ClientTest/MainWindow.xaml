@@ -1,0 +1,55 @@
+﻿<Window x:Class="ClientTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClientTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid Margin="10"
+            Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <TextBlock Text="Server IP"/>
+                <TextBox Text="{Binding ServerIP}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <TextBlock Text="Server Port"/>
+                <TextBox Text="{Binding ServerPort}"/>
+            </StackPanel>
+            <Button Content="Connect" 
+                    Margin="10"
+                    Grid.Row="2"
+                    Command="{Binding ConnectCM}"/>
+            <Button Content="Disconnect" 
+                    Margin="10"
+                    Grid.Row="3"
+                    Command="{Binding DisConnectCM}"/>
+            <ScrollViewer Grid.Row="5">
+                <TextBlock TextWrapping="Wrap"
+                       Text="{Binding ConnectStatus}"/>
+            </ScrollViewer>
+        </Grid>
+        <Grid Grid.Column="1">
+            <ScrollViewer>
+                <TextBlock Margin="10"
+                       TextWrapping="Wrap"
+                       Text="{Binding Respond}"/>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>
